@@ -31,3 +31,77 @@ The Booking Service is an application that provides functionality for managing p
 * **Deployment and Cloud Services:** Docker 3.8, AWS
 * **Additional instruments:** Maven, Lombok, Mapstruct
 * **Documentation:** Swagger
+
+<a name="architecture"></a>
+## Architecture:
+![img.png](img.png)
+
+<a name="entities"></a>
+## Entities:
+
+1. **User** - represents any user
+2. **Role** - represents user's role in app (customer, manager or admin)
+3. **Accommodation** - represents any property
+4. **Booking** - represents user's booking of specific property for some period
+5. **Payment** - represents user's payment for booking
+
+<a name="class-diagram"></a>
+## Class diagram
+
+![img_1.png](img_1.png)
+
+<a name="endpoints"></a>
+## Endpoints:
+
+### Authentication Controller:
+
+| Request type | Endpoint                     | Role  | Description                                               |
+|--------------|------------------------------|-------|-----------------------------------------------------------|
+| POST         | /api/auth/register           | ALL   | register a new user                                       |
+| POST         | /api/auth/login              | ALL   | login registered user                                     |
+
+
+### Accommodation Controller:
+
+| Request type | Endpoint                      | Role  | Description                                              |
+|--------------|------------------------------ |-------|----------------------------------------------------------|
+| POST         | /api/accommodations           | MANAGER/ADMIN   | create new accommodation                       |
+| GET          | /api/accommodations           | ALL             | get a list of all accommodations               |
+| GET          | /api/accommodations/{id}      | ALL             | get exact accommodation by id                  |
+| PUT          | /api/accommodations/{id}      | MANAGER/ADMIN   | update exact accommodation by id               |
+| DELETE       | /api/accommodations/{id}      | MANAGER/ADMIN   | delete exact accommodation by id               |
+
+### Booking Controller:
+
+| Request type | Endpoint                | Role           | Description                        |
+|------------- |------------------------ |----------------|------------------------------------|
+| POST         | /api/bookings           | USER           | create a new booking               |
+| GET          | /api/bookings/my        | ALL            | get user's bookings                |
+| GET          | /api/bookings           | MANAGER/ADMIN  | get all bookings                   |
+| GET          | /api/bookings/{id}      | USER           | get user's booking by id           |
+| PUT          | /api/bookings/{id}      | USER           | update user's booking by id        |
+| DELETE       | /api/bookings/{id}      | USER           | delete user's booking by id        |
+
+### Payment Controller:
+
+| Request type | Endpoint                | Role           | Description                                      | 
+|------------- |------------------------ |----------------|--------------------------------------------------|
+| POST         | /api/payments           | USER           | create payment                                   |
+| GET          | /api/payments/success   | ALL            | redirect endpoint after success stripe payment   |
+| GET          | /api/payments/cancel    | ALL            | redirect endpoint after cancel stripe session    |
+| GET          | /api/payments           | MANAGER/ADMIN  | find all payments or payment of specific user    |
+
+### User Controller:
+
+| Request type | Endpoint                | Role     | Description             | 
+|------------- |------------------------ |----------|-------------------------|
+| GET          | /api/users/me           | USER     | get user's profile      |
+| PUT          | /api/users/me           | USER     | update user's profile   |
+| PUT          | /api/users/{id}/role    | ADMIN    | update user's roles     |
+
+<a name="bot-stripe-config"></a>
+## Configure Telegram Bot and Stripe account
+
+* to create a telegram bot and get secret token follow this instructions: https://blog.devgenius.io/how-to-set-up-your-telegram-bot-using-botfather-fd1896d68c02
+* to create Stripe account ang get it secret follow next instructions: https://paymentsplugin.com/blog/stripe-api-keys
+<a name="features"></a>
