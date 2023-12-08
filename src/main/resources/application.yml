@@ -1,0 +1,53 @@
+#Database Connectivity Config
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/${POSTGRES_DATABASE}
+    driver-class-name: org.postgresql.Driver
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    open-in-view: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${SMTP_USERNAME}
+    password: ${SMTP_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+#Swagger Config
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+  writer-with-order-by-keys: true
+
+#Server Config
+server:
+  port: 8081
+
+#JWT Security Config
+jwt:
+  expiration: ${JWT_EXPIRATION}
+  secretKey: ${JWT_SECRET}
+
+#TestContainers Config
+testcontainers:
+  reuse:
+    enable: true
+
+#Stripe Integration Config
+stripe:
+  secret:
+    key: ${STRIPE_SECRET}
+
+#Telegram Integration Config
+bot:
+  token: ${BOT_TOKEN}
+  username: ${BOT_USERNAME}
