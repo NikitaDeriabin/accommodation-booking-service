@@ -105,3 +105,24 @@ The Booking Service is an application that provides functionality for managing p
 * to create a telegram bot and get secret token follow this instructions: https://blog.devgenius.io/how-to-set-up-your-telegram-bot-using-botfather-fd1896d68c02
 * to create Stripe account ang get it secret follow next instructions: https://paymentsplugin.com/blog/stripe-api-keys
 <a name="features"></a>
+
+<a name="progect-launch-with-docker"></a>
+## Project Launch with Docker
+
+* Clone the repository from GitHub
+* Create a `.env` file with the necessary environment variables (as an example for filling - .env.sample).
+* Run `mvn clean package` command
+* Run `docker-compose build` command to build, and `docker-compose up` to start the Docker containers
+* The application should be running at http://localhost:8088. You can test the operation of the application using swagger http://localhost:8088/swagger-ui/index.html.
+
+<a name="project-swagger"></a>
+### Test with Swagger on AWS
+
+Access the AWS deployment at http://ec2-3-94-255-245.compute-1.amazonaws.com/swagger-ui/index.html
+
+Here you can find our telegram bot: https://t.me/lux_fm_booking_bot
+
+If you want to test admin endpoints, use the following credentials:
+
+- **Email:** admin@gmail.com
+- **Password:** 123456
